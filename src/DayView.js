@@ -99,7 +99,8 @@ export default class DayView extends React.PureComponent {
   _renderTimeLabels () {
     const { styles } = this.props
     const offset = CALENDER_HEIGHT / 24
-    return range(12, 24).map((item, i) => {
+    // FIXME:
+    return range(0, 10).map((item, i) => {
       return (
         <View key={`line${i}`} style={[styles.line, { top: offset * i }]} />
       )
