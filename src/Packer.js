@@ -1,12 +1,15 @@
 // @flow
 import moment from 'moment'
-const CALENDER_HEIGHT = 2400
-const offset = CALENDER_HEIGHT / 24
+//FIXME:
+const CALENDER_HEIGHT = 1000
+const offset = CALENDER_HEIGHT / 10
 
 function buildEvent (column, left, width) {
   const startTime = moment(column.start)
   const endTime = column.end ? moment(column.end) : startTime.clone().add(1, 'hour')
-  const diffHours = startTime.diff(startTime.clone().startOf('day'), 'hours', true)
+  // FIXME: diffHours mean the time since start of day. 
+  // I missed it due to assuming what it meant by the name
+  const diffHours = startTime.diff(startTime.clone().startOf('day'), 'hours', true) - 6
 
   column.top = diffHours * offset
   column.height = endTime.diff(startTime, 'hours', true) * offset
@@ -51,6 +54,7 @@ function pack (columns, width, calculatedEvents) {
   }
 }
 
+// TODO: fix top, left, height, width, 
 function populateEvents (events, screenWidth) {
   let lastEnd
   let columns

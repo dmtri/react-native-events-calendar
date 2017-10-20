@@ -12,6 +12,7 @@ import _ from 'lodash'
 
 const LEFT_MARGIN = 60 - 1
 // const RIGHT_MARGIN = 10
+// FIXME:
 const CALENDER_HEIGHT = 2400
 // const EVENT_TITLE_HEIGHT = 15
 const TEXT_LINE_HEIGHT = 17
@@ -58,18 +59,20 @@ export default class DayView extends React.PureComponent {
     const offset = CALENDER_HEIGHT / 24
     const { format24h } = this.props
 
-    return range(0, 25).map((item, i) => {
+    //FIXME:
+    return range(0,10).map((item, i) => {
+      // 12am is when i = 6
       let timeText
       if (i === 0) {
         timeText = ``
-      } else if (i < 12) {
-        timeText = !format24h ? `${i} AM` : i
-      } else if (i === 12) {
+      } else if (i < 6) {
+        timeText = !format24h ? `${i + 6} AM` : i
+      } else if (i === 6) {
         timeText = !format24h ? `${i} PM` : i
-      } else if (i === 24) {
-        timeText = !format24h ? `12 AM` : 0
+      } else if (i === 9) {
+        timeText = !format24h ? `3 PM` : 0
       } else {
-        timeText = !format24h ? `${i - 12} PM` : i
+        timeText = !format24h ? `${i - 6} PM` : i
       }
       const { width, styles } = this.props
       return [
@@ -96,7 +99,7 @@ export default class DayView extends React.PureComponent {
   _renderTimeLabels () {
     const { styles } = this.props
     const offset = CALENDER_HEIGHT / 24
-    return range(0, 24).map((item, i) => {
+    return range(12, 24).map((item, i) => {
       return (
         <View key={`line${i}`} style={[styles.line, { top: offset * i }]} />
       )
@@ -117,7 +120,6 @@ export default class DayView extends React.PureComponent {
         width: event.width,
         top: event.top
       }
-
       // Fixing the number of lines for the event title makes this calculation easier.
       // However it would make sense to overflow the title to a new line if needed
       const numberOfLines = Math.floor(event.height / TEXT_LINE_HEIGHT)
