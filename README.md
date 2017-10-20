@@ -34,7 +34,7 @@ headerDisabled | PropTypes.boolean | disable date header. View only events in on
     }
 ```
 ## Install
-`npm i --save react-native-events-calendar`
+`npm install --save https://github.com/dmtri/react-native-events-calendar.git#master`
 
 ## Examples
 See Examples dir. 
