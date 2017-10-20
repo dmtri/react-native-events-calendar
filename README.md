@@ -20,6 +20,7 @@ initDate | PropTypes.string | show initial date (default is today)
 scrollToFirst | PropTypes.boolean | scroll to first event of the day (default true)
 size | PropTypes.number | number of date will render before and after initDate (default is 30 will render 30 day before initDate and 29 day after initDate)
 virtualizedListProps | PropTypes.object | prop pass to virtualizedList
+headerDisabled | PropTypes.boolean | disable date header. View only events in one day
 
 `EventCalendar` can be configured through a `style` prop whereby any of the components in the calendar can be styled. 
 ```
