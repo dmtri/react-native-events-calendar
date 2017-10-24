@@ -1,7 +1,7 @@
 // @flow
 import { StyleSheet } from 'react-native'
 // FIXME:
-const calendarHeight = 1000
+const calendarHeight = 1800
 // const eventPaddingLeft = 4
 const leftMargin = 50 - 1
 

@@ -51,8 +51,9 @@ export default class EventCalendar extends React.Component {
   }
 
   _renderItem({ index, item }) {
-    const { width, format24h, initDate, scrollToFirst } = this.props;
+    const { width, format24h, initDate, scrollToFirst, handleDayViewClick } = this.props;
     const date = moment(initDate).add(index - this.props.size, "days");
+    // FIXME: add handleDayViewClick prop
     return (
       <DayView
         date={date}
@@ -66,6 +67,7 @@ export default class EventCalendar extends React.Component {
         width={width}
         styles={this.styles}
         scrollToFirst={scrollToFirst}
+        handleDayViewClick={handleDayViewClick}
       />
     );
   }

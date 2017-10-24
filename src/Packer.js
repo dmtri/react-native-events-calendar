@@ -1,8 +1,8 @@
 // @flow
 import moment from 'moment'
 //FIXME:
-const CALENDER_HEIGHT = 1000
-const offset = CALENDER_HEIGHT / 10
+const CALENDER_HEIGHT = 1800
+const offset = CALENDER_HEIGHT / 18
 
 function buildEvent (column, left, width) {
   const startTime = moment(column.start)

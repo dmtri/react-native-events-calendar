@@ -60,7 +60,7 @@ export default class DayView extends React.PureComponent {
     const { format24h } = this.props
 
     //FIXME:
-    return range(0,10).map((item, i) => {
+    return range(0,18).map((item, i) => {
       // 12am is when i = 6
       let timeText
       if (i === 0) {
@@ -68,7 +68,7 @@ export default class DayView extends React.PureComponent {
       } else if (i < 6) {
         timeText = !format24h ? `${i + 6} AM` : i
       } else if (i === 6) {
-        timeText = !format24h ? `${i} PM` : i
+        timeText = '12 PM'
       } else if (i === 9) {
         timeText = !format24h ? `3 PM` : 0
       } else {
@@ -100,7 +100,7 @@ export default class DayView extends React.PureComponent {
     const { styles } = this.props
     const offset = CALENDER_HEIGHT / 24
     // FIXME:
-    return range(0, 10).map((item, i) => {
+    return range(0, 18).map((item, i) => {
       return (
         <View key={`line${i}`} style={[styles.line, { top: offset * i }]} />
       )
@@ -163,10 +163,13 @@ export default class DayView extends React.PureComponent {
   }
 
   render () {
-    const { styles } = this.props
+    const { styles, scrollViewProps, handleDayViewClick } = this.props
+    // FIXME: add handleDayViewClick prop
+
     return (
       <ScrollView ref={ref => (this._scrollView = ref)}
         contentContainerStyle={[styles.contentStyle, { width: this.props.width }]}
+        onTouchEnd={handleDayViewClick}
       >
         {this._renderLines()}
         {this._renderEvents()}
